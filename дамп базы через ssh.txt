@@ -1,0 +1,39 @@
+открыть сессию в putty или просто ssh
+mysql -h localhost -u my_user -p'my_password' my_database < /path/to/your/dump/my_dump.sql
+
+mysql -h localhost -u admeen_new_viroha -p'Lx8q4MoBTvF1(h1g' admeen_new_viroha < /home/admeen/web/new.viroha.ru/public_html/web/admeen_rdplast.sql
+
+/home/admeen/web/new.viroha.ru/public_html/web/admeen_rdplast.sql
+
+
+mysql -h localhost -u admeen_kwtelectro -p'(1:?400y=p!BIMdz' admeen_kwtelectro < /home/admeen/web/kwtelectro.ru/public_html/czmmarc7_kwtele.sql
+
+
+
+Эти индексы ускорят выборку при фильтрации товаров.
+mysql -u root -p
+USE admeen_kwtgen;
+
+ALTER TABLE oc_product ADD INDEX idx_model (model);
+ALTER TABLE oc_product_description ADD INDEX idx_name (name);
+ALTER TABLE oc_category_path ADD INDEX idx_path (path_id);
+ALTER TABLE oc_product_to_category ADD INDEX idx_category (category_id);
+
+
+mysql -h localhost -u admeen_generator-kwatt -p':1O$(aTm%*[G72UX' admeen_generator-kwatt  <<EOF
+ALTER TABLE oc_product_to_category ADD INDEX idx_category_product (category_id, product_id);
+ALTER TABLE oc_product_to_category ADD INDEX idx_category_product (category_id, product_id);
+ALTER TABLE oc_product_to_category ADD INDEX idx_product_category (product_id, category_id);
+ALTER TABLE oc_category_to_store ADD INDEX idx_category_store (category_id, store_id);
+ALTER TABLE oc_category_description ADD INDEX idx_category_name (name);
+ALTER TABLE oc_product_to_category MODIFY category_id SMALLINT UNSIGNED NOT NULL;
+ALTER TABLE oc_product_to_category MODIFY product_id INT UNSIGNED NOT NULL;
+OPTIMIZE TABLE oc_product_to_category;
+OPTIMIZE TABLE oc_category;
+OPTIMIZE TABLE oc_product;
+ALTER TABLE oc_product_to_category ENGINE=InnoDB;
+EOF
+
+Скопировать бд локально
+mysqldump -u admeen_generator-kwatt -p':1O$(aTm%*[G72UX' admeen_generator-kwatt > /home/admeen/web/generator-kwatt.ru/public_html/bkp-no-product.sql
+

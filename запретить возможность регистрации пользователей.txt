@@ -1,0 +1,17 @@
+/home/s/stroit5x/stroyiteks.ru/public_html/catalog/controller/account/register.php
+$this->response->redirect($this->url->link('common/home', '', true));
+
+/home/s/stroit5x/stroyiteks.ru/public_html/catalog/controller/api/login.php
+ $this->response->setOutput(json_encode(['error' => 'Регистрация отключена!']));
+
+/home/s/stroit5x/stroyiteks.ru/public_html/catalog/view/theme/unishop2/template/common/header.twig
+Закомментировать 
+	<!-- <li>
+											<a href="{{ register }}" {% if account.popup_register %} onclick="uniRegisterOpen(); return false;" {% endif %}>
+												<i class="fas fa-fw fa-user-plus"></i>
+												{{ text_register }}</a>
+										</li>
+
+и в sql
+UPDATE oc_setting SET value = '0' WHERE key = 'config_customer_online';
+UPDATE oc_setting SET value = '0' WHERE key = 'config_customer_approval';

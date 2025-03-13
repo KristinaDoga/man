@@ -1,0 +1,72 @@
+-- Начинаем с обновления значений, используя временную таблицу для обработки дублирования
+--Убираем единицы дины (mm в cm) 
+-- Шаг 1: Временная таблица для хранения потенциальных конфликтов
+CREATE TEMPORARY TABLE temp_conflicts AS
+SELECT a.id AS original_id, b.id AS duplicate_id
+FROM shop_feature_values_dimension a
+JOIN shop_feature_values_dimension b
+ON a.feature_id = b.feature_id 
+AND a.value / 10 = b.value 
+AND a.unit = 'mm'
+AND b.unit = 'cm';
+
+-- Шаг 2: Попробуем обновить записи, которые не конфликтуют
+UPDATE shop_feature_values_dimension
+SET 
+    value = value / 10,
+    unit = 'cm'
+WHERE unit = 'mm'
+AND id NOT IN (SELECT original_id FROM temp_conflicts);
+
+-- Шаг 3: Для тех записей, которые конфликтуют, выводим их ID
+SELECT * FROM temp_conflicts;
+
+-- Выполняем обновление на основе данных из временной таблицы temp_conflicts
+UPDATE shop_product_features pf
+JOIN temp_conflicts tc ON pf.feature_value_id = tc.original_id
+SET pf.feature_value_id = tc.duplicate_id;
+
+-- После выполнения всех шагов, временную таблицу можно удалить
+DROP TEMPORARY TABLE temp_conflicts;
+
+
+
+-- Убираем единицы веса (g в kg)
+-- Шаг 1: Временная таблица для хранения потенциальных конфликтов
+CREATE TEMPORARY TABLE temp_conflicts AS
+SELECT a.id AS original_id, b.id AS duplicate_id
+FROM shop_feature_values_dimension a
+JOIN shop_feature_values_dimension b
+ON a.feature_id = b.feature_id 
+AND a.value / 1000 = b.value 
+AND a.unit = 'g'
+AND b.unit = 'kg';
+
+-- Шаг 2: Попробуем обновить записи, которые не конфликтуют
+UPDATE shop_feature_values_dimension
+SET 
+    value = value / 1000,
+    unit = 'kg'
+WHERE unit = 'g'
+AND id NOT IN (SELECT original_id FROM temp_conflicts);
+
+-- Шаг 3: Для тех записей, которые конфликтуют, выводим их ID
+SELECT * FROM temp_conflicts;
+
+-- Выполняем обновление на основе данных из временной таблицы temp_conflicts
+UPDATE shop_product_features pf
+JOIN temp_conflicts tc ON pf.feature_value_id = tc.original_id
+SET pf.feature_value_id = tc.duplicate_id;
+
+-- После выполнения всех шагов, временную таблицу можно удалить
+DROP TEMPORARY TABLE temp_conflicts;
+
+
+-- Меняем единицы измерения по умолчанию
+UPDATE shop_feature
+SET default_unit = CASE 
+    WHEN default_unit = 'mm' THEN 'cm'
+    WHEN default_unit = 'g' THEN 'kg'
+    ELSE default_unit
+END
+WHERE default_unit IN ('mm', 'g');

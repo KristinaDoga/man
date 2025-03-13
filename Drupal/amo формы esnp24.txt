@@ -1,0 +1,73 @@
++1. Создать формы в amocrm
+2. Добавить css на скрытие текста "работет на amocrm", прям в crm
+
+.amo-brand.amo-brand__dark{
+    margin-top: -100%;
+opacity: 0;
+}
+
++3. На кнопках data-modal="emergency" заменяем на data-modal-amo="emergencyamoform" 
+Можно и другие названия, но атрибут должен быть другой, да и его значение, жедательно, тоже, чтоб не наткнуться на конфликты по функционалу
+
++4.В footer  добавляем скрипты с amo для понятности оборачиваем в div с тем же id, что  data-modal-amo у кнопки
+
+	<div id="emergencyamoform">
+    <script>!function (a, m, o, c, r, m) { a[o + c] = a[o + c] || { setMeta: function (p) { this.params = (this.params || []).concat([p]) } }, a[o + r] = a[o + r] || function (f) { a[o + r].f = (a[o + r].f || []).concat([f]) }, a[o + r]({ id: "1470054", hash: "cf6c5ee52601932daa50765fac307589", locale: "ru" }), a[o + m] = a[o + m] || function (f, k) { a[o + m].f = (a[o + m].f || []).concat([[f, k]]) } }(window, 0, "amo_forms_", "params", "load", "loaded");</script>
+<script id="amoforms_script_1470054" async="async" charset="utf-8"
+    src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1736431148"></script>
+</div>
+
++5. Css для формы примерно такие
+
+#questionamoform {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: block; /* Гарантирует, что элемент занимает место на странице */
+}
+
++6. Js 
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Находим все элементы с атрибутом data-modal-amo="callamoform"
+    const questionButtons = document.querySelectorAll('[data-modal-amo="callamoform"]');
+    const questionForm = document.getElementById('callamoform');
+    const modalOverlay = document.querySelector('.modal_overlay');
+
+    if (questionForm) {
+        // Устанавливаем начальное состояние для формы
+        questionForm.style.opacity = "0";
+        questionForm.style.transition = "opacity 0.2s ease"; // Плавный переход
+    } else {
+        console.error('Не удалось найти элемент с ID "callamoform".');
+        return; // Если форма не найдена, выходим
+    }
+
+    // Если кнопки найдены, добавляем обработчики событий
+    if (questionButtons.length > 0) {
+        questionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Устанавливаем opacity=1 для формы
+                questionForm.style.opacity = "1";
+            });
+        });
+    } else {
+        console.error('Не удалось найти элементы с data-modal-amo="callamoform".');
+    }
+
+    // Если modalOverlay найден, добавляем обработчик события
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', () => {
+            // Устанавливаем opacity=0 для формы
+            questionForm.style.opacity = "0";
+        });
+    } else {
+        console.error('Не удалось найти элемент с классом .modal_overlay.');
+    }
+});
+7. Css и js на других сайтах мб другими. Как как здесь затемнение экрана на popup уже было реализовано, то его не трогали
+

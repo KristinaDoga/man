@@ -1,0 +1,24 @@
+восстановить базу из бэкапа настолько древнего, насколько это можно (с учётом срока хранения бэкапов и последних изменений на сайте)
+
+отключить антивирус на windows
+
+выкачать файлы сайта командой rsync. 
+Пример:
+rsync -rvzl --update --ignore-existing --exclude=.git --progress --preallocate --no-owner --no-group  admeen@sicotiriy.beget.app:/home/admeen/web/pansionat-nn.ru /c/Users/kristina/Desktop/
+Шаблон:
+rsync -rvzl --update --ignore-existing --exclude=.git --progress --preallocate --no-owner --no-group пользователь@хост:путь_к_папке_на_сервере путь_к_папке_в_которую_выкачиваются_файлы
+
+После этого нужно ввести пароль от admeen на хостинге sicotiriy.beget.app (это  для данного примера, в общем случае это пароль того пользователя, под которым идёт подключение к хостингу)
+
+После выкачивания файлов контекстное меню - свойства - атрибуты - убрать флажок "Только для чтения" - применить ко всем вложенным папкам и файлам
+
+удаляем следующие файлыи и каталоги: 
+/public_html/wp-content/advanced-cache.php
+/public_html/wp-content/db.php
+/public_html/wp-content/object-cache.php
+/public_html/wp-content/w3tc-config
+
+Открываем папку в vscode, нажимаем ctrl + shift + f и вставляем в поисковую строку function _0x.* и включаем поиск по регулярному выражению
+Удалить все упоминания этих функций
+Сжать папку в архив
+Положить на сервер и распаковать. Важно заходить на сервер не под пользователем root, иначе будут другие права у файлов.

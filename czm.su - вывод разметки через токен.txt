@@ -1,0 +1,37 @@
+<!-- [custom:tpl:trigger:addictionPhase:"Сдать тест на наличие наркотика в крови"]
+<span class="btn trigger" data-modal="addictionPhase">Сдать тест на наличие наркотика в крови</span> -->
+
+<?php
+function hook_tokens( $type, $tokens, array $data = array(), array $options = array() ) {
+
+    $replacements = array();
+    if( $type == 'custom' ) :
+        foreach( $tokens as $name => $original ) :
+            $name_parts = explode( ':', $name );
+            switch( $name_parts[0] ) {
+
+                // если это токены вида tpl
+                case 'tpl':
+
+                    // триггеры
+                    // если тип - triggers, и указан тип триггера ($name_parts[2])
+                    if ( !empty($name_parts[1]) && ($name_parts[1] === 'trigger') && !empty( $name_parts[2]) ){
+
+                        // тип триггера "addictionPhase"
+                        if ($name_parts[2] === 'addictionPhase'){
+                            $value = '<span class="btn trigger" data-modal="addictionPhase">' . trim( trim( $name_parts[ 3 ], '"' ), "'" ) . '</span>';
+                            $replacements[ $original ] = $value;
+                        }
+                        
+                    } elseif ( !empty($name_parts[1]) && ($name_parts[1] === 'anyOtherElementType') ){
+                        // а здесь формируем разметку для какого-нибудь другого типа элементов, которому к тому же не нужно указывать подтип через $name_parts[2] или текстовое внутреннее содержание через $name_parts[ 3 ]
+                        $value = '<span class="anyOtherElementType">Статичная заглушка</span>';
+                        $replacements[ $original ] = $value;
+                    }
+                        
+                    break;
+            }
+        endforeach;
+    endif;
+    return $replacements;
+};

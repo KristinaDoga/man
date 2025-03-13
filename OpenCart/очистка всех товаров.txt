@@ -1,0 +1,57 @@
+-- категории
+TRUNCATE TABLE `oc_category`;
+TRUNCATE TABLE `oc_category_description`;
+TRUNCATE TABLE `oc_category_filter`;
+TRUNCATE TABLE `oc_category_path`;
+TRUNCATE TABLE `oc_category_to_layout`;
+TRUNCATE TABLE `oc_category_to_store`;
+DELETE FROM oc_seo_url WHERE query LIKE 'category_id=%';
+
+-- товары
+TRUNCATE TABLE oc_product;
+TRUNCATE TABLE oc_product_attribute;
+TRUNCATE TABLE oc_product_description;
+TRUNCATE TABLE oc_product_discount;
+TRUNCATE TABLE oc_product_image;
+TRUNCATE TABLE oc_product_option;
+TRUNCATE TABLE oc_product_option_value;
+TRUNCATE TABLE oc_product_related;
+TRUNCATE TABLE oc_product_related;
+TRUNCATE TABLE oc_product_reward;
+TRUNCATE TABLE oc_product_special;
+TRUNCATE TABLE oc_product_to_category;
+TRUNCATE TABLE oc_product_to_download;
+TRUNCATE TABLE oc_product_to_layout;
+TRUNCATE TABLE oc_product_to_store;
+TRUNCATE TABLE oc_review;
+
+DELETE FROM oc_seo_url WHERE query LIKE 'product_id=%';
+
+-- атрибуты
+TRUNCATE TABLE oc_attribute;
+TRUNCATE TABLE oc_attribute_description;
+TRUNCATE TABLE oc_attribute_group;
+TRUNCATE TABLE oc_attribute_group_description;
+TRUNCATE TABLE oc_product_attribute;
+TRUNCATE TABLE oc_option;
+TRUNCATE TABLE oc_option_description;
+TRUNCATE TABLE oc_option_value;
+TRUNCATE TABLE oc_option_value_description;
+TRUNCATE TABLE oc_product_option;
+
+-- опции
+TRUNCATE TABLE oc_option;
+TRUNCATE TABLE oc_option_description;
+TRUNCATE TABLE oc_option_value;
+TRUNCATE TABLE oc_option_value_description;
+TRUNCATE TABLE oc_product_option;
+
+-- производители
+DELETE FROM oc_seo_url WHERE query LIKE 'manufacturer_id=%';
+TRUNCATE TABLE oc_manufacturer;
+-- TRUNCATE TABLE oc_manufacturer_description;
+TRUNCATE TABLE oc_manufacturer_to_store;
+
+-- url
+TRUNCATE TABLE oc_url_filter_vier;
+TRUNCATE TABLE oc_seo_url;

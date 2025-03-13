@@ -1,0 +1,10 @@
+ALTER TABLE oc_product_to_category ADD INDEX idx_category_product (category_id, product_id);
+ALTER TABLE oc_product_to_category ADD INDEX idx_product_category (product_id, category_id);
+ALTER TABLE oc_category_to_store ADD INDEX idx_category_store (category_id, store_id);
+ALTER TABLE oc_category_description ADD INDEX idx_category_name (name);
+ALTER TABLE oc_product_to_category MODIFY category_id SMALLINT UNSIGNED NOT NULL;
+ALTER TABLE oc_product_to_category MODIFY product_id INT UNSIGNED NOT NULL;
+OPTIMIZE TABLE oc_product_to_category;
+OPTIMIZE TABLE oc_category;
+OPTIMIZE TABLE oc_product;
+ALTER TABLE oc_product_to_category ENGINE=InnoDB;

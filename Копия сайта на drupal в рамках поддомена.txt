@@ -1,0 +1,127 @@
+Копия сайта на drupal в рамках поддомена (пример на создании нового поддомена Луганск на centr-rehab.ru, копия с donetsk.centr-rehab.ru):
+1. ======== Копируем бд ========
+Идём в файлы сайта и в /home/admeen/web/centr-rehab.ru/public_html/sites/donetsk/settings.php и смотрим на кусок кода такого вида:
+-----
+$databases = array (
+  'default' =>
+  array (
+    'default' =>
+    array (
+      'database' => 'admeen_creh_dnck',
+      'username' => 'admeen_creh_dnck',
+      'password' => 'pA1rH8bH4i',
+      'host' => 'localhost',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);
+----
+'database' => 'admeen_creh_dnck', значит идём искать эту бд.
+
+cp.beget.com - Hestia CP - Раздел "База данных" - admeen_creh_dnck - кнопка "Скачать" 
+
+
+
+2. ======== Создание новой бд ========
+Здесь же, в cp.beget.com - Hestia CP - Раздел "База данных" нажимаем Добавить базу данных (зеленый "+")
+
+Задаём имя бд. Например, creh_lugansk (префикс admeen_ автоматически добавляется)
+
+Генерим пароль
+
+Запоминаем эти данные: admeen_creh_lugansk и password
+
+Сохраняем
+
+Возвращаемся в Раздел "База данных" и ищем новую admeen_creh_lugansk
+
+Заходим в phpMyAdmin (при наведении кнопка со стрелочкой и дверью (типа))
+
+Могут потребовать данные для входа - вводим
+
+В колонке слева щёлкаем по имени бд
+
+В меню сверху щёлкаем по кнопке "импорт"
+
+Выбираем скачанный дамп базы и загружаем. Готово
+
+
+
+
+3. ======== Добавляем поддомен ========
+cp.beget.com - Раздел "Домены и поддомены"
+
+Ищем нужный домен и нажимаем на три точки справа - "Добавить поддомен"
+
+Прописываем lugansk.centr-rehab.ru (уда не направляем)
+
+В той же вкладке в строке с основным доменом наводим на три точки - "Редактировать DNS"
+
+Смотрим А запись у основного домена и копируем оттуда ip
+
+прописываем этот ip в поля с lugansk.centr-rehab.ru и www.lugansk.centr-rehab.ru
+
+Идём в cp.beget.com - Hestia CP - Раздел "Веб"
+
+Ищем там основной домен centr-rehab.ru - изменить домен (карандаш)
+
+В поле алиасы прописываем lugansk.centr-rehab.ru и www.lugansk.centr-rehab.ru
+
+Сохраняем
+
+
+
+4. ======== Копируем файлы сайта ========
+
+Соединяемся по ssh/ftp (через WinSCP, например) и копируем 
+/home/admeen/web/centr-rehab.ru/public_html/sites/donetsk в /home/admeen/web/centr-rehab.ru/public_html/sites/lugansk
+
+/home/admeen/web/centr-rehab.ru/public_html/sites/sites.php прописываем сотношение домен - каталог, то есть 
+$sites['lugansk.centr-rehab.ru'] = 'lugansk';
+
+В /home/admeen/web/centr-rehab.ru/public_html/sites/lugansk/settings.php обязательно! меняем доступы. Указываем новую бд, иначе весь контент с Луганска окажется и в Донецке тоже.
+-----
+$databases = array (
+  'default' =>
+  array (
+    'default' =>
+    array (
+      'database' => 'admeen_creh_lugansk',
+      'username' => 'admeen_creh_lugansk',
+      'password' => 'password',
+      'host' => 'localhost',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);
+----
+
+
+
+5. ======== Настройка админки ========
+Переходим на lugansk.centr-rehab.ru, в админку (доступы, естественно, такие же, как у donetsk.centr-rehab.ru)
+
+Конфигурация - Поиск и метаданные - robots.txt 
+после "User-agent: *" и "User-agent: Yandex" 
+заменяем "Allow: /" на "Disallow: /" 
+Это обязательно, чтобы поисковик не пробил дубль сайта, пока мы его меняем.
+
+
+
+6. ======== Чистка данных ========
+
+Чтобы работы было меньше, можно удалить часть контента. Например, удалить услуги (одну оставить для примера и всё)
+
+В мета-тегах изменить город на Луганск.
+
+В шапке/подвале поменять адрес.
+
+В контактах убрать всё что с Донецка
+
+В seo frog хорошо бы проверить, не остались ли где на сайте упоминания "Донецк" или "donetsk"
+
+

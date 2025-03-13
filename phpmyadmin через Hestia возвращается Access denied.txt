@@ -1,0 +1,4 @@
+некорректные права на файл. Сменили root@sicotiriy:/usr/share/phpmyadmin# chmod 644 hestia-sso.php
+
+
+4baa49

@@ -1,0 +1,8 @@
+Ошибка после установки opencart
+Warning: realpath(): open_basedir restriction in effect. File(/home/admeen/web/viroha.ru) is not within the allowed path(s): (/home/admeen/.composer:/home/admeen/web/viroha.ru/public_html:/home/admeen/web/viroha.ru/private:/home/admeen/web/viroha.ru/public_shtml:/home/admeen/tmp:/tmp:/bin:/usr/bin:/usr/local/bin:/usr/share:/opt) in /home/admeen/web/viroha.ru/public_html/admin/controller/common/security.php on line 26
+
+решается так
+
+в файле \home\admeen\web\viroha.ru\public_html\admin\controller\common\security.php
+меняем $data['document_root'] = str_replace('\\', '/', realpath($this->request->server['DOCUMENT_ROOT'] . '/../') . '/');
+на $data['document_root'] = str_replace('\\', '/', $this->request->server['DOCUMENT_ROOT'] . '/../');
