@@ -79,7 +79,7 @@ rsync -avz /c/Users/kristina/Desktop/new.viroha.ru/ admeen@sicotiriy.beget.app:/
 
 
 --- Бэкапы с ветклиники ---
-rsync -rvzl --update --ignore-existing --exclude=.git --progress --preallocate --no-owner --no-group  admeen@sicotiriy.beget.app:/home/admeen/web/new.viroha.ru/public_html/web /c/Users/kristina/Desktop/new.viroha.ru
+rsync -rvzl --update --ignore-existing --exclude=.git --progress --preallocate --no-owner --no-group  admeen@sicotiriy.beget.app:/home/admeen/web/estett.ru/public_html /c/Users/kristina/Desktop/estett.ru
 y4UtkqRsEh9
 
 
