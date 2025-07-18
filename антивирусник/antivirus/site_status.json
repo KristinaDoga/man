@@ -1,0 +1,835 @@
+{
+    "esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "omsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "voronezh.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "volgograd.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "vladimir.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ufa.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tyumen.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tula.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tomsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "stavropol.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "spb.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "sochi.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "saratov.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "samara.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rostov.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "perm.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "novosibirsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "nn.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "nizhny-tagil.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "moscow.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "mahachkala.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "lipetsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kursk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kazan.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kaliningrad.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "irkutsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ekb.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "chelyabinsk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "cheboksary.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "bryansk.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "astrahan.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "yaroslavl.esnp24.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "madmen.bz": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "direct.madmen.bz": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "artem-iroshnikov.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "chelyabinsk.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ekb.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "krasnodar.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "nn.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rostov.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "saratov.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "spb.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tver.narko-hospital.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "labinsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "timashevsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tihoreck.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "temruk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "sochi.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "slavyansk-na-kubani.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "novorossijsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "majkop.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kurganinsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "anapa.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "krymsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kropotkin.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "korenovsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "goryachii-kluch.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "gelendzhik.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ejsk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "belorechensk.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "armavir.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "tuapse.grail.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rehab-centr.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "nonna.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "pansionat-nn.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "vsepansionati.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rodusadba.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "medtransit.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rodusadba78.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rodusadba.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ru161.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rupans.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rusadba.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "stpansionat.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "esteshop.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "este-shop.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "pansionat-voronezh.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "pansionat-stavropol.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "pansionat-sochi.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "brastore.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "franshiza-pansionat.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "estett.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ibankeer.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "wheelmax.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "vsekliniki.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "rdplast.kz": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "ekzosom.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "vektortrezvosti.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "priznanie.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "spasenieest.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "novystart.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "zhizn-bezteni.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "zhivoe-dyhanie.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "novyritm.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "pulssvobody.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "povorot-rubezh.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "antinarkolab.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "antikod.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "stupeni-pererozhdeniya.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "altervita.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "impulssveta.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "navershine.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "nachalo-vozvrata.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "evolyuciya.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "siyanievoli.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "svoboda360.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "klinika-reboot.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "alhisvozh.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "bezgranic.su": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "centr-vit.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "alkonarkologiya.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "generator-kwatt.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "zavod-amper.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "dolgoletie-pansionat.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "krasnodar.dolgoletie-pansionat.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "viroha.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    },
+    "kwtelectro.ru": {
+        "error": false,
+        "http": 200,
+        "footer": true,
+        "coming_soon": false,
+        "time": "2025-07-18 12:00:02"
+    }
+}

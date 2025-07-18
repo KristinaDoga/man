@@ -1,0 +1,5 @@
+name = Clear Form Cache
+description = Автоматически очищает cache_form и другие кэш-таблицы.
+core = 7.x
+package = Custom
+version = 1.0

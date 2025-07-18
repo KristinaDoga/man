@@ -1,0 +1,210 @@
+<?php
+// проверка на отстутствие footer и 200код
+$sites = [
+"esnp24.ru",
+"omsk.esnp24.ru",
+"voronezh.esnp24.ru",
+"volgograd.esnp24.ru",
+"vladimir.esnp24.ru",
+"ufa.esnp24.ru",
+"tyumen.esnp24.ru",
+"tula.esnp24.ru",
+"tomsk.esnp24.ru",
+"stavropol.esnp24.ru",
+"spb.esnp24.ru",
+"sochi.esnp24.ru",
+"saratov.esnp24.ru",
+"samara.esnp24.ru",
+"rostov.esnp24.ru",
+"perm.esnp24.ru",
+"novosibirsk.esnp24.ru",
+"nn.esnp24.ru",
+"nizhny-tagil.esnp24.ru",
+"moscow.esnp24.ru",
+"mahachkala.esnp24.ru",
+"lipetsk.esnp24.ru",
+"kursk.esnp24.ru",
+"kazan.esnp24.ru",
+"kaliningrad.esnp24.ru",
+"irkutsk.esnp24.ru",
+"ekb.esnp24.ru",
+"chelyabinsk.esnp24.ru",
+"cheboksary.esnp24.ru",
+"bryansk.esnp24.ru",
+"astrahan.esnp24.ru",
+"yaroslavl.esnp24.ru",
+"madmen.bz",
+"direct.madmen.bz",
+"artem-iroshnikov.ru",
+"artemiroshnikov.ru",
+"narko-hospital.ru",
+"chelyabinsk.narko-hospital.ru",
+"ekb.narko-hospital.ru",
+"krasnodar.narko-hospital.ru",
+"nn.narko-hospital.ru",
+"rostov.narko-hospital.ru",
+"saratov.narko-hospital.ru",
+"spb.narko-hospital.ru",
+"tver.narko-hospital.ru",
+"grail.su",
+"labinsk.grail.su",
+"timashevsk.grail.su",
+"tihoreck.grail.su",
+"temruk.grail.su",
+"sochi.grail.su",
+"slavyansk-na-kubani.grail.su",
+"novorossijsk.grail.su",
+"majkop.grail.su",
+"kurganinsk.grail.su",
+"anapa.grail.su",
+"krymsk.grail.su",
+"kropotkin.grail.su",
+"korenovsk.grail.su",
+"goryachii-kluch.grail.su",
+"gelendzhik.grail.su",
+"ejsk.grail.su",
+"belorechensk.grail.su",
+"armavir.grail.su",
+"tuapse.grail.su",
+"rehab-centr.su",
+"medtranzit.ru",
+"nonna.su",
+"pansionat-nn.ru",
+"vsepansionati.ru",
+"rodusadba.ru",
+"medtransit.ru",
+"rodusadba78.ru",
+"rodusadba.su",
+"ru161.ru",
+"rupans.ru",
+"rusadbakrd.ru",
+"rusadba-pans.ru",
+"rusadba.su",
+"stpansionat.ru",
+"esteshop.ru",
+"este-shop.ru",
+"pansionat-voronezh.ru",
+"pansionat-stavropol.ru",
+"pansionat-sochi.su",
+"brastore.ru",
+"franshiza-pansionat.ru",
+"estett.ru",
+"ibankeer.ru",
+"realnoeseo.ru",
+"wheelmax.ru",
+"vsekliniki.su",
+"rdplast.kz",
+"fishing-sklad.ru",
+"ekzosom.ru",
+"protivostoyanie.su",
+"vektortrezvosti.ru",
+"priznanie.su",
+"spasenieest.ru",
+"novystart.ru",
+"zhizn-bezteni.ru",
+"zhivoe-dyhanie.ru",
+"novyritm.su",
+"pulssvobody.ru",
+"povorot-rubezh.ru",
+"antinarkolab.ru",
+"antikod.su",
+"stupeni-pererozhdeniya.ru",
+"altervita.su",
+"impulssveta.ru",
+"navershine.su",
+"nachalo-vozvrata.ru",
+"evolyuciya.su",
+"siyanievoli.ru",
+"svoboda360.ru",
+"klinika-reboot.ru",
+"alhisvozh.ru",
+"bezgranic.su",
+"centr-vit.ru",
+"alkonarkologiya.ru",
+"generator-kwatt.ru",
+"zavod-amper.ru",
+"rusadba-krd.ru",
+"kwtgen.ru",
+"dolgoletie-pansionat.ru",
+"krasnodar.dolgoletie-pansionat.ru",
+"viroha.ru",
+"kwtelectro.ru",
+];
+
+
+
+$to = 'czm-marketing@yandex.ru';
+$subject = '⛔ Мониторинг сайтов — Обнаружены проблемы';
+$headers = 'From: monitor@check.com';
+
+$logFile = __DIR__ . '/check_log.txt';
+$cacheFile = __DIR__ . '/site_status.json';
+
+$previousStatus = file_exists($cacheFile) ? json_decode(file_get_contents($cacheFile), true) : [];
+$currentStatus = [];
+$confirmedProblems = [];
+$now = date('Y-m-d H:i:s');
+
+foreach ($sites as $domain) {
+    $url = "https://$domain";
+    $http_ok = false;
+    $has_footer = false;
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => false,
+    ]);
+
+    $response = curl_exec($curl);
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $body = substr($response, curl_getinfo($curl, CURLINFO_HEADER_SIZE));
+    curl_close($curl);
+
+    if ($httpCode === 200) {
+        $http_ok = true;
+    }
+
+    if ($body && stripos($body, 'footer') !== false) {
+        $has_footer = true;
+    }
+
+    $has_error = !$http_ok || !$has_footer;
+
+    $status_key = "$domain";
+    $currentStatus[$status_key] = [
+        'error' => $has_error,
+        'http' => $httpCode,
+        'footer' => $has_footer,
+        'time' => $now
+    ];
+
+    $logLine = "[$now] $url — HTTP: $httpCode, FOOTER: " . ($has_footer ? "YES" : "NO") . "\n";
+    file_put_contents($logFile, $logLine, FILE_APPEND);
+
+    // сравниваем с предыдущим статусом
+    if ($has_error && (!isset($previousStatus[$status_key]) || $previousStatus[$status_key]['error'] === true)) {
+        $issue = "$url — ";
+        if (!$http_ok) {
+            $issue .= "❌ HTTP != 200 ($httpCode)";
+        }
+        if (!$has_footer) {
+            $issue .= (!$http_ok ? "; " : "") . "❌ Нет footer";
+        }
+        $confirmedProblems[] = $issue;
+    }
+}
+
+// Обновляем кэш
+file_put_contents($cacheFile, json_encode($currentStatus, JSON_PRETTY_PRINT));
+
+// Отправляем письмо при подтверждённых проблемах
+if (!empty($confirmedProblems)) {
+    $message = "Обнаружены проблемы на сайтах:\n\n" . implode("\n", $confirmedProblems);
+    mail($to, $subject, $message, $headers);
+}

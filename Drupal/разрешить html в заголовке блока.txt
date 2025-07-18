@@ -1,0 +1,12 @@
+public_html\sites\all\themes\default\templates\block.tpl.php
+
+<?
+/**
+ * Preprocess vars for block.tpl.php.
+ */
+function THEMENAME_preprocess_block(&$vars) {
+  // Allow html title
+  if ($vars['block']->title != '<none>' && strpos($vars['block']->title, '<') !== FALSE) {
+    $vars['block']->subject = filter_xss($vars['block']->title, array('span', 'div', 'br'));
+  }
+} ?>

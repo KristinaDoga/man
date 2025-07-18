@@ -1,0 +1,83 @@
+после установки копируем тему (на примере twentytwentyfour):
+Создаём каталог /wp-content/themes/twentytwentyfour-child
+в нём 2 файла:
+
+functions.php
+<?php
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
+function my_theme_enqueue_styles() {
+    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style('child-style', get_stylesheet_uri());
+}
+
+style.css
+/*
+Theme Name: Twenty Twenty-Four Child
+Template: twentytwentyfour
+*/
+@import url("../twentytwentyfour/style.css");
+
+Можно копировать файлы из родительской темы, но не все подряд. Например, были взяты каталоги с шаблонами: parts, patterns, templates
+
+=== Кастомная главная страница ===
+Дальше всё делаем в каталоге twentytwentyfour-child, если не сказано иное
+
+--- создаём templates/home-custom.html ---
+<!-- templates/home-custom.html -->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!-- Основной контент -->
+<main class="wp-block-group">
+    <!-- Ваш кастомный контент здесь -->
+    <!-- wp:post-content /-->
+    <!-- Например: -->
+    <!-- wp:pattern {"slug":"twentytwentyfour-child/banner-hero"} /-->
+    <!-- wp:pattern {"slug":"twentytwentyfour-child/cta-services-image-left"} /-->
+</main>
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+
+
+
+--- создаём patterns/home-custom-content.php ---
+<?php
+/**
+ * Title: Кастомная главная страница
+ * Slug: twentytwentyfour-child/home-custom
+ * Categories: featured
+ */
+?>
+<!-- wp:heading -->
+<h2>Добро пожаловать на мой сайт</h2>
+<!-- /wp:heading -->
+
+
+--- Регистрация шаблона в functions.php ----
+function twentytwentyfour_child_register_templates() {
+    // Регистрация кастомного шаблона
+    add_theme_support('block-templates');
+    
+    // Можно также зарегистрировать как шаблон по умолчанию
+    register_block_pattern(
+        'twentytwentyfour-child/home-custom',
+        array(
+            'title'       => __('Кастомная главная', 'twentytwentyfour-child'),
+            'categories'  => array('featured'),
+            'description' => __('Шаблон для кастомной главной страницы', 'twentytwentyfour-child'),
+            'content'     => '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+                             <!-- wp:pattern {"slug":"twentytwentyfour-child/home-custom"} /-->
+                             <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->',
+        )
+    );
+}
+
+
+=== Создание блоков для страницы (с cfs) ===
+
+
+
+
+
+
+
+ <!-- Этот блок выводит контент страницы -->
+    <!-- wp:post-content /-->
+

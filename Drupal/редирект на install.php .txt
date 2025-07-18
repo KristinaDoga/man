@@ -1,0 +1,18 @@
+Если сайт редиректит на /install.php, возможно, что в public_html/sites/default нет файла settings.php 
+или у него не права 644 (или у каталога не 755) 
+или нет структуры, положенной этому файлу. а именно 
+
+$databases = array (
+  'default' => 
+  array (
+    'default' => 
+    array (
+      'database' => 'my_db',
+      'username' => 'user',
+      'password' => 'pass',
+      'host' => 'localhost',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);

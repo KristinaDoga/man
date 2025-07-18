@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Модуль для регулярной очистки таблицы cache_form.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+function clear_form_cache_cron() {
+  watchdog('clear_form_cache', 'Запущен hook_cron()', [], WATCHDOG_DEBUG);
+
+  $last_run = variable_get('clear_form_cache_last_run', 0);
+  $interval = variable_get('clear_form_cache_interval', 86400); // По умолчанию 24 часа
+
+  if ((REQUEST_TIME - $last_run) > $interval) {
+    try {
+      db_truncate('cache_form')->execute();
+      variable_set('clear_form_cache_last_run', REQUEST_TIME);
+      watchdog('clear_form_cache', 'Таблица cache_form была очищена.', [], WATCHDOG_NOTICE);
+    }
+    catch (Exception $e) {
+      watchdog('clear_form_cache', 'Ошибка при очистке cache_form: @msg', ['@msg' => $e->getMessage()], WATCHDOG_ERROR);
+    }
+  }
+  else {
+    watchdog('clear_form_cache', 'Очистка не требуется: прошло меньше, чем @interval секунд.', [
+      '@interval' => $interval,
+    ], WATCHDOG_DEBUG);
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function clear_form_cache_install() {
+  variable_set('clear_form_cache_interval', 86400); // 24 часа
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function clear_form_cache_uninstall() {
+  variable_del('clear_form_cache_last_run');
+  variable_del('clear_form_cache_interval');
+}
+
+/**
+ * Implements hook_menu().
+ */
+function clear_form_cache_menu() {
+  $items['admin/config/system/clear-form-cache'] = [
+    'title' => 'Настройки очистки cache_form',
+    'description' => 'Настроить интервал автоматической очистки таблицы cache_form.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['clear_form_cache_settings_form'],
+    'access arguments' => ['administer site configuration'],
+    'type' => MENU_NORMAL_ITEM,
+  ];
+  return $items;
+}
+
+/**
+ * Форма настроек модуля Clear Form Cache.
+ */
+function clear_form_cache_settings_form($form, &$form_state) {
+  $form['clear_form_cache_interval'] = [
+    '#type' => 'textfield',
+    '#title' => t('Интервал очистки (в секундах)'),
+    '#default_value' => variable_get('clear_form_cache_interval', 86400),
+    '#description' => t('Введите интервал между очистками таблицы cache_form. Например, 86400 = 24 часа.'),
+    '#size' => 10,
+    '#required' => TRUE,
+  ];
+
+  return system_settings_form($form);
+}

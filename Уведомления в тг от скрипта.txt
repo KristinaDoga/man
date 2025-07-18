@@ -1,0 +1,16 @@
+Уведомления в тг о результатах скрипта. Пример /home/admeen/_cron/customScript/check_on_virus.php на artemy3h
+
+Создать Telegram-бота (если ещё нет):
+
+В @BotFather: 
+Ввести название бота, username
+
+Пример:
+/newbot
+Проверка сайтов на вирусы
+SiteCustomCheck_bot
+
+вернётся
+<bot_token> вида 123456789:AA...
+
+Узнать chat_id можно у @username_to_id_bot, написав ему username for your bot (Например, @SiteCustomCheck_bot )

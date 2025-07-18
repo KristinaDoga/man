@@ -1,0 +1,46 @@
+// куки попап
+jQuery(function($) {
+  const popupId = 'cookie-popup';
+  const storageKey = 'cookieConsentGiven';
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  const lastConsent = localStorage.getItem(storageKey);
+  const now = Date.now();
+
+  if (!lastConsent || now - lastConsent > oneDay) {
+    const $popup = $(`
+      <div id="${popupId}" style="
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: #222;
+        color: #fff;
+        padding: 15px 20px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+        z-index: 10000;
+      ">
+        <span>Этот сайт использует cookie файлы для хранения данных. Продолжая использовать сайт, Вы даете согласие на работу с этими файлами.</span>
+        <button class="close-btn" aria-label="Закрыть" style="
+          background: transparent;
+          border: none;
+          color: #fff;
+          font-size: 20px;
+          cursor: pointer;
+          padding: 0;
+          line-height: 1;
+        ">&times;</button>
+      </div>
+    `);
+
+    $('body').append($popup);
+
+    $popup.find('.close-btn').on('click', function() {
+      localStorage.setItem(storageKey, Date.now());
+      $popup.remove();
+    });
+  }
+});

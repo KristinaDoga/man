@@ -1,0 +1,105 @@
+Ссылка на policy
+Классы agrmnt
+Выделять акцентным цветом
+
+soglasen|Согласен на <a href="/policy">обработку моих персональных данных</a>
+
+// галочки в форму
+(function ($) {
+    Drupal.behaviors.ajx = {
+        attach: function (context, settings) {
+
+            // Добавляем класс .agrmnt ко всем новым формам, которых он ещё нет
+            $('form:not(.agrmnt)', context).addClass('agrmnt');
+
+            // Smart Labels
+            function smartLabels(block) {
+                $(block).addClass('smrt_lb');
+                $(block).find('.form-item label').click(function () {
+                    $(this).addClass('pos');
+                    $(this).siblings('input,textarea').focus();
+                });
+                formElements = $(block).find('.form-item input,.form-item textarea');
+                $(formElements).click(function () {
+                    $(this).parents('.form-item').find('label').addClass('pos');
+                });
+                $(formElements).focus(function () {
+                    $(this).parents('.form-item').find('label').addClass('pos');
+                });
+                $(formElements).blur(function () {
+                    if (!($(this).val())) {
+                        $(this).parents('.form-item').find('label').removeClass('pos');
+                    } else {
+                        $(this).parents('.form-item').find('label').addClass('pos');
+                    }
+                });
+                $(formElements).each(function () {
+                    if ($(this).val()) {
+                        $(this).parents('.form-item').find('label').addClass('pos');
+                    }
+                });
+            }
+
+            smartLabels($('.block-webform', context));
+
+            // Добавить класс btn к submit-кнопке
+            $('input[type="submit"]', context).each(function () {
+                if (!$(this).hasClass('btn')) {
+                    $(this).addClass('btn');
+                }
+            });
+
+            // Кнопка закрытия в модальных формах
+            $('.modal_form .block-webform', context).each(function () {
+                if ($(this).find('.modal_form__close').length == 0) {
+                    $(this).append($('<span class="modal_form__close close_icon"><span></span><span></span></span>'));
+                }
+            });
+
+            // Маска телефона
+            $('input.phone', context).mask("+7 (000) 000-00-00", { placeholder: "+7 (___) ___-__-__" });
+            $('input.phone', context).on('keyup', function (e) {
+                var val = e.target.value;
+                if (val.indexOf('+7 (89') > -1) {
+                    console.log('will correct phonenumber!', e.target);
+                    e.target.value = val.replace('+7 (89', '+7 (9');
+                }
+            });
+
+            // Добавляем CSS-стили через JS (один раз)
+            if (!document.getElementById('agreement-styles')) {
+                $('<style id="agreement-styles">.agreement { margin-top: 10px; font-size: 12px;}  .agreement span.text > a{color: #6bc43e;} .agreement span.icon{border: 1px solid #aaa; margin-right: 3px;}</style>').appendTo('head');
+            }
+
+            // Добавление блока согласия
+            $('.agrmnt', context).each(function () {
+                if ($(this).find('.agreement').length === 0) {
+                    $(this).append(
+                        $('<p class="agreement active">' +
+                            '<span class="icon"></span>' +
+                            '<span class="text">Согласен с <a href="/policy">политикой конфиденциальности</a></span>' +
+                            '</p>')
+                    );
+                }
+            });
+
+
+
+            // Переключение согласия
+            $('.agreement', context).off('click').on('click', function () {
+                $(this).toggleClass('active');
+                var form_input = $(this).parents('.agrmnt').find('input.webform-submit');
+                if (!$(this).hasClass('active')) {
+                    form_input.attr('disabled', 'disabled');
+                } else {
+                    form_input.removeAttr('disabled');
+                }
+            });
+
+            // Удалить лишний класс с кнопки "Загрузить ещё"
+            $('.pager-load-more', context).removeClass('pager');
+        }
+    };
+
+})(jQuery);
+

@@ -22,3 +22,33 @@ rsync -rvzl --update --ignore-existing --exclude=.git --progress --preallocate -
 Удалить все упоминания этих функций
 Сжать папку в архив
 Положить на сервер и распаковать. Важно заходить на сервер не под пользователем root, иначе будут другие права у файлов.
+
+
+====== upd =====
+
+В первую очередь заменить index.php и .htaccess на нормальные, удалить index.html если он есть
+
+AntiVirus - плагин WP  можно проверить тему
+https://www.virustotal.com
+https://sitecheck.sucuri.net
+
+поменять права
+# Установить права 644 для всех файлов
+find /home/admeen/web/artem-iroshnikov.ru/public_html -type f -exec chmod 644 {} \;
+# Установить права 755 для всех каталогов
+find /home/admeen/web/artem-iroshnikov.ru/public_html -type d -exec chmod 755 {} \;
+
+
+скрипт, который проходит по всем дочерним файлам php и js, по регулярному выражению найдёт "function _0x.*" и удалит всю строку (см del_0x.php)
+
+Поиск в базе
+SELECT * FROM wp_options WHERE option_value LIKE '%function _0x%';
+SELECT * FROM wp_posts WHERE post_content LIKE '%function _0x%';
+SELECT * FROM wp_postmeta WHERE meta_value LIKE '%function _0x%';
+SELECT * FROM wp_wfissues WHERE data LIKE '%function _0x%';
+
+
+Удалить скрипт
+UPDATE wp_posts
+SET post_content = LEFT(post_content, LOCATE('<script>function _0x', post_content) - 1)
+WHERE post_content LIKE '%function _0x%';

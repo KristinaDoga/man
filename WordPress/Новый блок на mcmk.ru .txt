@@ -7,3 +7,9 @@
 Создаём файл с вёрсткой будущего блока. Там где нужно вытянуть данные с админки вставляем <?php echo CFS()->get('motivation_main_image') ?>
 вместо motivation_main_image - имя поля (не название, а машинное имя)
 
+
+
+Добавить блок через шорткод:
+/home/admeen/web/mcmk.ru/public_html/wp-content/themes/mcmkru/template_parts/elements/shortcodes/shortcode_lechenie-igromanii.php
+
+/home/admeen/web/mcmk.ru/public_html/wp-content/themes/mcmkru/inc/shortcodes.php

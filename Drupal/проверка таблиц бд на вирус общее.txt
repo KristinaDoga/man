@@ -1,0 +1,136 @@
+SELECT * FROM field_data_body WHERE body_value LIKE '%base64_decode%';
+SELECT * FROM field_data_body WHERE body_value LIKE '%eval(%';
+SELECT * FROM field_data_body WHERE body_value LIKE '%<?php%';
+SELECT * FROM field_data_body WHERE body_value LIKE '%function _0x%';
+
+SELECT * FROM field_revision_body WHERE body_value LIKE '%base64_decode%';
+SELECT * FROM field_revision_body WHERE body_value LIKE '%eval(%';
+SELECT * FROM field_revision_body WHERE body_value LIKE '%<?php%';
+SELECT * FROM field_revision_body WHERE body_value LIKE '%function _0x%';
+
+SELECT * FROM field_data_comment_body WHERE comment_body_value LIKE '%base64_decode%';
+SELECT * FROM field_data_comment_body WHERE comment_body_value LIKE '%eval(%';
+SELECT * FROM field_data_comment_body WHERE comment_body_value LIKE '%<?php%';
+SELECT * FROM field_data_comment_body WHERE comment_body_value LIKE '%function _0x%';
+
+SELECT * FROM field_revision_comment_body WHERE comment_body_value LIKE '%base64_decode%';
+SELECT * FROM field_revision_comment_body WHERE comment_body_value LIKE '%eval(%';
+SELECT * FROM field_revision_comment_body WHERE comment_body_value LIKE '%<?php%';
+SELECT * FROM field_revision_comment_body WHERE comment_body_value LIKE '%function _0x%';
+
+SELECT * FROM node WHERE title LIKE '%base64_decode%';
+SELECT * FROM node WHERE title LIKE '%eval(%';
+SELECT * FROM node WHERE title LIKE '%<?php%';
+SELECT * FROM node WHERE title LIKE '%function _0x%';
+
+-- SELECT * FROM node WHERE body LIKE '%base64_decode%';
+-- SELECT * FROM node WHERE body LIKE '%eval(%';
+-- SELECT * FROM node WHERE body LIKE '%<?php%';
+
+-- SELECT * FROM comment WHERE comment LIKE '%base64_decode%';
+-- SELECT * FROM comment WHERE comment LIKE '%eval(%';
+-- SELECT * FROM comment WHERE comment LIKE '%<?php%';
+
+SELECT * FROM variable WHERE value LIKE '%base64_decode%';
+SELECT * FROM variable WHERE value LIKE '%eval(%';
+SELECT * FROM variable WHERE value LIKE '%<?php%';
+SELECT * FROM variable WHERE value LIKE '%function _0x%';
+
+SELECT * FROM users WHERE name LIKE '%base64_decode%';
+SELECT * FROM users WHERE name LIKE '%eval(%';
+SELECT * FROM users WHERE name LIKE '%<?php%';
+SELECT * FROM users WHERE name LIKE '%function _0x%';
+
+SELECT * FROM users WHERE mail LIKE '%base64_decode%';
+SELECT * FROM users WHERE mail LIKE '%eval(%';
+SELECT * FROM users WHERE mail LIKE '%<?php%';
+SELECT * FROM users WHERE mail LIKE '%function _0x%';
+
+SELECT * FROM users WHERE pass LIKE '%base64_decode%';
+SELECT * FROM users WHERE pass LIKE '%eval(%';
+SELECT * FROM users WHERE pass LIKE '%<?php%';
+SELECT * FROM users WHERE pass LIKE '%function _0x%';
+
+SELECT * FROM users WHERE status LIKE '%base64_decode%';
+SELECT * FROM users WHERE status LIKE '%eval(%';
+SELECT * FROM users WHERE status LIKE '%<?php%';
+SELECT * FROM users WHERE status LIKE '%function _0x%';
+
+SELECT * FROM users WHERE signature LIKE '%base64_decode%';
+SELECT * FROM users WHERE signature LIKE '%eval(%';
+SELECT * FROM users WHERE signature LIKE '%<?php%';
+SELECT * FROM users WHERE signature LIKE '%function _0x%';
+
+SELECT * FROM menu_links WHERE link_path LIKE '%base64_decode%';
+SELECT * FROM menu_links WHERE link_path LIKE '%eval(%';
+SELECT * FROM menu_links WHERE link_path LIKE '%<?php%';
+SELECT * FROM menu_links WHERE link_path LIKE '%function _0x%';
+
+SELECT * FROM menu_links WHERE link_title LIKE '%base64_decode%';
+SELECT * FROM menu_links WHERE link_title LIKE '%eval(%';
+SELECT * FROM menu_links WHERE link_title LIKE '%<?php%';
+SELECT * FROM menu_links WHERE link_title LIKE '%function _0x%';
+
+-- SELECT * FROM block WHERE info LIKE '%base64_decode%';
+-- SELECT * FROM block WHERE info LIKE '%eval(%';
+-- SELECT * FROM block WHERE info LIKE '%<?php%';
+
+-- SELECT * FROM block WHERE body LIKE '%base64_decode%';
+-- SELECT * FROM block WHERE body LIKE '%eval(%';
+-- SELECT * FROM block WHERE body LIKE '%<?php%';
+
+SELECT * FROM block_custom WHERE info LIKE '%base64_decode%';
+SELECT * FROM block_custom WHERE info LIKE '%eval(%';
+SELECT * FROM block_custom WHERE info LIKE '%<?php%';
+SELECT * FROM block_custom WHERE info LIKE '%function _0x%';
+
+SELECT * FROM block_custom WHERE body LIKE '%base64_decode%';
+SELECT * FROM block_custom WHERE body LIKE '%eval(%';
+SELECT * FROM block_custom WHERE body LIKE '%<?php%';
+SELECT * FROM block_custom WHERE body LIKE '%function _0x%';
+
+-- SELECT * FROM webform_submissions WHERE data LIKE '%base64_decode%';
+-- SELECT * FROM webform_submissions WHERE data LIKE '%eval(%';
+-- SELECT * FROM webform_submissions WHERE data LIKE '%<?php%';
+
+SELECT * FROM webform_submitted_data WHERE data LIKE '%base64_decode%';
+SELECT * FROM webform_submitted_data WHERE data LIKE '%eval(%';
+SELECT * FROM webform_submitted_data WHERE data LIKE '%<?php%';
+SELECT * FROM webform_submitted_data WHERE data LIKE '%function _0x%';
+
+SELECT * FROM system WHERE filename LIKE '%base64_decode%';
+SELECT * FROM system WHERE filename LIKE '%eval(%';
+SELECT * FROM system WHERE filename LIKE '%<?php%';
+SELECT * FROM system WHERE filename LIKE '%function _0x%';
+
+SELECT * FROM system WHERE name LIKE '%base64_decode%';
+SELECT * FROM system WHERE name LIKE '%eval(%';
+SELECT * FROM system WHERE name LIKE '%<?php%';
+SELECT * FROM system WHERE name LIKE '%function _0x%';
+
+SELECT * FROM system WHERE info LIKE '%base64_decode%';
+SELECT * FROM system WHERE info LIKE '%eval(%';
+SELECT * FROM system WHERE info LIKE '%<?php%';
+SELECT * FROM system WHERE info LIKE '%function _0x%';
+
+-- SELECT * FROM field_config WHERE settings LIKE '%base64_decode%';
+-- SELECT * FROM field_config WHERE settings LIKE '%eval(%';
+-- SELECT * FROM field_config WHERE settings LIKE '%<?php%';
+
+SELECT * FROM field_config WHERE data LIKE '%base64_decode%';
+SELECT * FROM field_config WHERE data LIKE '%eval(%';
+SELECT * FROM field_config WHERE data LIKE '%<?php%';
+SELECT * FROM field_config WHERE data LIKE '%function _0x%';
+
+-- SELECT * FROM field_config_instance WHERE settings LIKE '%base64_decode%';
+-- SELECT * FROM field_config_instance WHERE settings LIKE '%eval(%';
+-- SELECT * FROM field_config_instance WHERE settings LIKE '%<?php%';
+
+SELECT * FROM field_config_instance WHERE data LIKE '%base64_decode%';
+SELECT * FROM field_config_instance WHERE data LIKE '%eval(%';
+SELECT * FROM field_config_instance WHERE data LIKE '%<?php%';
+SELECT * FROM field_config_instance WHERE data LIKE '%function _0x%';
+
+-- SELECT * FROM actions WHERE data LIKE '%base64_decode%';
+-- SELECT * FROM actions WHERE data LIKE '%eval(%';
+-- SELECT * FROM actions WHERE data LIKE '%<?php%';

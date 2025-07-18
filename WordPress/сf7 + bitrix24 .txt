@@ -1,0 +1,211 @@
+=== На примере dolgovaya-amnistiya.ru ===
+
+--- В functions.php прописать это: ---
+
+add_action( 'wpcf7_mail_sent', 'your_wpcf7_mail_sent_function' );
+
+function your_wpcf7_mail_sent_function( $contact_form ) {
+    $title = $contact_form->title;
+    $submission = WPCF7_Submission::get_instance();
+    $posted_data = $submission->get_posted_data();
+
+    // Укажи свой URL вебхука Bitrix24
+    $webhookUrl = 'https://fin-am.bitrix24.ru/rest/1878/jlu2krx1bnucmw3i/crm.lead.add.json';
+
+    // ===== 1. Акция для новых клиентов =====
+if ($title == 'Акция для новых клиентов') {
+    $name = $posted_data['text-974'];
+    $phone = $posted_data['tel-666'];
+
+    // Формируем комментарий:
+    $comments = "Заявка на акцию для новых клиентов\n\n";
+    $comments .= "Имя: $name\n";
+    $comments .= "Телефон: $phone\n";
+
+    $queryData = http_build_query(array(
+        'fields' => array(
+            'TITLE' => 'Акция для новых клиентов',
+            'NAME' => $name,
+            'PHONE' => array(array("VALUE" => $phone, "VALUE_TYPE" => "WORK")),
+            'COMMENTS' => $comments,
+        ),
+        'params' => array("REGISTER_SONET_EVENT" => "Y")
+    ));
+}
+
+
+    // ===== 2. Анкета =====
+elseif ($title == 'Анкета') {
+    $name = $posted_data['your-name'] ?? '';
+    $phone = $posted_data['tel-847'] ?? '';
+    $messenger = $posted_data['your-messenger'] ?? '';
+    $form1 = $posted_data['radio-145'] ?? '';
+    $form2 = $posted_data['textarea-749'] ?? '';
+    $form3 = $posted_data['textarea-149'] ?? '';
+    $form4 = $posted_data['textarea-172'] ?? '';
+    $form5 = $posted_data['textarea-41'] ?? '';
+    $form6 = $posted_data['textarea-406'] ?? '';
+    $form7 = $posted_data['textarea-161'] ?? '';
+    $form8 = $posted_data['textarea-486'] ?? '';
+    $form9 = $posted_data['textarea-46'] ?? '';
+    $form10 = $posted_data['textarea-210'] ?? '';
+    $form11 = $posted_data['textarea-118'] ?? '';
+    $form12 = $posted_data['textarea-693'] ?? '';
+    $form13 = $posted_data['textarea-258'] ?? '';
+    $form14 = $posted_data['textarea-245'] ?? '';
+    $form15 = $posted_data['textarea-979'] ?? '';
+    $form16 = $posted_data['textarea-246'] ?? '';
+    $form17 = $posted_data['textarea-861'] ?? '';
+    $form18 = $posted_data['textarea-935'] ?? '';
+    $form19 = $posted_data['textarea-621'] ?? '';
+    $form20 = $posted_data['textarea-625'] ?? '';
+    $form21 = $posted_data['textarea-259'] ?? '';
+    $form22 = $posted_data['textarea-311'] ?? '';
+
+    // Преобразуем в строку, если массив
+    foreach ([
+        'messenger', 'form1'
+    ] as $var) {
+        if (is_array($$var)) {
+            $$var = implode(', ', $$var);
+        }
+    }
+
+    $comments = "Анкета клиента\n\n";
+    $comments .= "Имя: $name\n";
+    $comments .= "Телефон: $phone\n";
+    $comments .= "Мессенджер: $messenger\n\n";
+
+    $comments .= "1. Я посмотрел(а)/изучил(а): $form1\n";
+    $comments .= "2. Причина долгов: $form2\n";
+    $comments .= "3. Виды долгов: $form3\n";
+    $comments .= "4. Примерные суммы: $form4\n";
+    $comments .= "5. Когда начались просрочки: $form5\n";
+    $comments .= "6. Когда появились сложности: $form6\n";
+    $comments .= "7. Последний платёж: $form7\n";
+    $comments .= "8. Имущество: $form8\n";
+    $comments .= "9. Совместное имущество: $form9\n";
+    $comments .= "10. Жильё и аренда: $form10\n";
+    $comments .= "11. Регион проживания: $form11\n";
+    $comments .= "12. Последние сделки: $form12\n";
+    $comments .= "13. Иждивенцы: $form13\n";
+    $comments .= "14. Доход: $form14\n";
+    $comments .= "15. Доп. доход: $form15\n";
+    $comments .= "16. Дата рождения: $form16\n";
+    $comments .= "17. Кредиты супруга(и): $form17\n";
+    $comments .= "18. Что беспокоит: $form18\n";
+    $comments .= "19. Был ли уже банкротом: $form19\n";
+    $comments .= "20. Цель: $form20\n";
+    $comments .= "21. Обращения ранее: $form21\n";
+    $comments .= "22. Вопрос: $form22\n";
+
+    $queryData = http_build_query(array(
+        'fields' => array(
+            'TITLE' => 'Анкета',
+            'NAME' => $name,
+            'PHONE' => array(array("VALUE" => $phone, "VALUE_TYPE" => "WORK")),
+            'COMMENTS' => $comments,
+        ),
+        'params' => array("REGISTER_SONET_EVENT" => "Y")
+    ));
+}
+
+
+
+    // ===== 3. Бесплатная консультация юриста =====
+elseif ($title == 'бесплатная консультация юриста') {
+    $name = $posted_data['your-name'];
+    $phone = $posted_data['your-phone'];
+    $messenger = $posted_data['your-messenger'];
+
+    if (is_array($messenger)) {
+        $messenger = implode(', ', $messenger);
+    }
+
+    $comments = "Заявка на бесплатную консультацию\n\n";
+    $comments .= "Имя: $name\n";
+    $comments .= "Телефон: $phone\n";
+    $comments .= "Мессенджер: $messenger\n";
+
+    $queryData = http_build_query(array(
+        'fields' => array(
+            'TITLE' => 'Бесплатная консультация юриста',
+            'NAME' => $name,
+            'PHONE' => array(array("VALUE" => $phone, "VALUE_TYPE" => "WORK")),
+            'COMMENTS' => $comments,
+        ),
+        'params' => array("REGISTER_SONET_EVENT" => "Y")
+    ));
+}
+
+
+    // ===== 4. Опрос =====
+elseif ($title == 'Опрос') {
+    $survey1 = $posted_data['radio-733'] ?? '';
+    $survey2 = $posted_data['radio-376'] ?? '';
+    $survey3 = $posted_data['radio-742'] ?? '';
+    $survey4 = $posted_data['radio-311'] ?? '';
+    $survey5 = $posted_data['radio-282'] ?? '';
+
+    $name = $posted_data['text-367'] ?? '';
+    $phone = $posted_data['tel-941'] ?? '';
+    $messenger = $posted_data['radio-338'] ?? '';
+
+    // Преобразуем поля в строку, если массив
+    foreach (['survey1', 'survey2', 'survey3', 'survey4', 'survey5', 'messenger'] as $var) {
+        if (is_array($$var)) {
+            $$var = implode(', ', $$var);
+        }
+    }
+
+    $comments = "Опрос клиента\n\n";
+    $comments .= "Имя: $name\n";
+    $comments .= "Телефон: $phone\n";
+    $comments .= "Способ связи: $messenger\n\n";
+    $comments .= "1. Общая сумма долгов: $survey1\n";
+    $comments .= "2. Наличие кредитов/ипотеки: $survey2\n";
+    $comments .= "3. Срок просрочки: $survey3\n";
+    $comments .= "4. Уровень дохода: $survey4\n";
+    $comments .= "5. Угрозы взыскания: $survey5\n";
+
+    $queryData = http_build_query(array(
+        'fields' => array(
+            'TITLE' => 'Ответ на опрос',
+            'NAME' => $name,
+            'PHONE' => array(array("VALUE" => $phone, "VALUE_TYPE" => "WORK")),
+            'COMMENTS' => $comments,
+        ),
+        'params' => array("REGISTER_SONET_EVENT" => "Y")
+    ));
+}
+
+
+
+    // ===== Отправка данных в Bitrix24, если $queryData определён =====
+    if (!empty($queryData)) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $webhookUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $queryData);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        // Можно логировать результат:
+        // file_put_contents(__DIR__ . '/bitrix_log.txt', $result);
+    }
+}
+
+
+
+=== примечание ===
+https://fin-am.bitrix24.ru/rest/1878/jlu2krx1bnucmw3i/crm.lead.add.json это надо брать в кабинете битрикса 
+(приложения - разработчикам - создать входящий веб-хук - указать 
+Настройка прав CRM (crm)
+Метод crm.lead.add)
+
+
+все поля, например,  $form12 = $posted_data['textarea-161'] берутся из cf7 одинаково, а обрабатывать их потом надо по разному. В радио или чек-боксах передаётся массив, тогда вместо данных в битрикс прилетит "array"
+
+
+https://gettotop.ru/crm/integraciya-contact-form-7-i-bitrix24/

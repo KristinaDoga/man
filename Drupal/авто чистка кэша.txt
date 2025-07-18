@@ -1,0 +1,17 @@
+settings.php
+
+Для таблицы cache_form cache_page cache_render (Проверить наличие таблиц!)
+
+// Очистка при cache_clear_all()
+$conf['cache_clear_all_cache_form'] = TRUE;
+$conf['cache_clear_all_cache_page'] = TRUE;
+$conf['cache_clear_all_cache_render'] = TRUE;
+
+// Периодическая принудительная очистка (в секундах)
+$conf['cache_flush_cache_form'] = 259200;    // Каждый 3 дня
+$conf['cache_flush_cache_page'] = 259200;   // Каждые 3 дня
+$conf['cache_flush_cache_render'] = 259200; // Каждые 3 дня
+
+
+
+
