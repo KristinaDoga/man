@@ -1,0 +1,33 @@
+SET lc_messages = 'ru_RU';
+Ответ MySQL: 
+#1231 - Variable 'lc_messages' can't be set to the value of 'ru_RU'
+
+
+Как исправить? (на примере czmgoreo)
+
+/etc/mysql/mariadb.conf.d/50-server.cnf
+после [mysqld] добавить
+lc_messages_dir = /usr/share/mysql
+lc_messages = ru_RU
+
+проверить, чтобы языковые файлы и каталоги действительно были в /usr/share/mysql
+Например, /usr/share/mysql/russian/errmsg.sys Если такой структуры нет, ищем какая и указываем её
+
+Перезагружаем базу
+sudo systemctl restart mariadb
+
+Заходим в базу от рута 
+mysql -u root -p
+
+И смотрим
+SHOW VARIABLES LIKE 'lc_messages%';
+
+Вывод примерно такой:
+
++-----------------+------------------+
+| Variable_name   | Value            |
++-----------------+------------------+
+| lc_messages     | ru_RU            |
+| lc_messages_dir | /usr/share/mysql |
++-----------------+------------------+
+

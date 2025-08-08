@@ -1,0 +1,54 @@
+licenses modx
+
+Пакеты  - Gallary создать галерею Лицензии и загрузить туда фото
+
+Скопировать ресурс отзывы (без дочерних эл-ов), заменить на Лицензии
+
+Заголовок*
+Лицензии
+Расширенный заголовок
+Лицензии
+Описание
+Лицензии
+Псевдоним
+licenses
+Пункт меню
+Лицензии
+Атрибуты ссылки
+вкл Скрыть из меню
+вкл Опубликован
+
+Вставить туда
+<section class="otzyvy">
+	<div class="swiper-otzyvy first-otzyvy">
+		<div class="container">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				    [[Gallery? &album=`Лицензии` &thumbTpl=`ItemThumb.licenses.tpl`]]
+				</div>
+			</div>
+		</div>
+		<div class="swiper-button-prev first-prev"></div>
+		<div class="swiper-button-next first-next"></div>
+	</div>
+</section>
+<style>
+    .second-otzyvy .swiper-container .swiper-slide {
+        display: block;
+    }
+    .second-otzyvy .swiper-container {
+        height: auto;
+    }
+    .video-wrap {
+        width: 100%;
+        height: 200px;
+    }
+    .video-wrap iframe, .video-wrap video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+
+Скопировать чанк ItemThumb.otzyvy.tpl под именем ItemThumb.licenses.tpl

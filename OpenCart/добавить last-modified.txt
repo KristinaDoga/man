@@ -1,0 +1,12 @@
+		// catalog/controller/common/header.php (в начале index())
+$last_modified = time(); // текущая дата, можно заменить на из БД
+header("Last-Modified: " . gmdate("D, d M Y H:i:s", $last_modified) . " GMT");
+
+// Проверка If-Modified-Since
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+    $if_modified_since = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+    if ($if_modified_since >= $last_modified) {
+        header('HTTP/1.1 304 Not Modified');
+        exit;
+    }
+}

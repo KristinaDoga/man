@@ -1,0 +1,58 @@
+1. С помощью sql запроса создаём таблицу
+
+==========
+CREATE TABLE word_replace (
+    id INT NOT NULL AUTO_INCREMENT,
+    data VARCHAR(255) NOT NULL,
+    entity_id INT NOT NULL,
+    value LONGTEXT NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO word_replace (data, entity_id, value)
+SELECT 'node__body.body_value', entity_id, body_value
+FROM node__body
+UNION ALL
+SELECT 'node__field_smalldesc.field_smalldesc_value', entity_id, field_smalldesc_value
+FROM node__field_smalldesc
+UNION ALL
+SELECT 'block_content__body.body_value', entity_id, body_value
+FROM block_content__body;
+==========
+
+2. Экспортируем в csv
+
+3. Заменяем 
+<p class=""docData.*"" style=""
+<p style=""
+
+class=""docData.*"" style=""
+style=""
+
+
+4. Заменяем все нужные фразы
+
+5. С помощью csv_to_sql.py конвертируем csv в sql
+
+6. таблицу sql импортируем доп таблицу в базу
+
+7. Обновляем данные в исходных таблицах
+
+UPDATE node__body t
+JOIN word_replace w ON w.entity_id = t.entity_id
+SET t.body_value = w.value
+WHERE w.data = 'node__body.body_value';
+
+UPDATE node__field_smalldesc t
+JOIN word_replace w ON w.entity_id = t.entity_id
+SET t.field_smalldesc_value = w.value
+WHERE w.data = 'node__field_smalldesc.field_smalldesc_value';
+
+UPDATE block_content__body t
+JOIN word_replace w ON w.entity_id = t.entity_id
+SET t.body_value = w.value
+WHERE w.data = 'block_content__body.body_value';
+
+8. Удаляем доп таблицу
+
+DROP TABLE word_replace

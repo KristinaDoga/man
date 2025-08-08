@@ -1,0 +1,164 @@
+Возможно устарела функция getToken() в create_lead.php
+
+Для теста можно выполнить код из test_create_lead.php и разрешить в htaccess (drupal 8+)
+
+RewriteCond %{REQUEST_URI} ^/modules/custom/pension_amocrm/amo/test_create_lead.php$ [NC]
+RewriteRule .* - [L]
+
+Если проблема в этом, нужно заменить  
+    // $accessToken = getToken();
+
+    // $apiClient->setAccessToken($accessToken)
+    //   ->setAccountBaseDomain($accessToken->getValues()['baseDomain'])
+    //   ->onAccessTokenRefresh(
+    //     function (AccessTokenInterface $accessToken, string $baseDomain) {
+    //       saveToken([
+    //         'accessToken' => $accessToken->getToken(),
+    //         'refreshToken' => $accessToken->getRefreshToken(),
+    //         'expires' => $accessToken->getExpires(),
+    //         'baseDomain' => $baseDomain,
+    //       ]);
+    //     }
+    //   );
+
+ на ручной ввод и проверку 
+
+
+
+// === Загружаем токен из файла ===
+$tokenFile = __DIR__ . '/token_info.json';
+if (!file_exists($tokenFile)) {
+    $this->log ? $this->log->write(' Не найден token_info.json') : false;
+    exit('Нет токена для авторизации AmoCRM');
+}
+$tokenData = json_decode(file_get_contents($tokenFile), true);
+if (!$tokenData) {
+    $this->log ? $this->log->write(' Ошибка чтения token_info.json') : false;
+    exit('Ошибка чтения токена AmoCRM');
+}
+
+// === Создаем клиент AmoCRM ===
+$apiClient = new \AmoCRM\Client\AmoCRMApiClient(
+    'b7d9fd5c-fafb-4de0-92e2-e2ed4a0d6ca9',
+    'peJEv0LalTba7SUIZL54Xy2RkjDN9BrIez9LEk7vLeiEk8WIedudOh1YzE9wUrpY',
+    'https://vsepansionati.ru/modules/custom/pension_amocrm/amo/get_token.php'
+);
+
+// === Формируем AccessToken ===
+$accessToken = new \League\OAuth2\Client\Token\AccessToken([
+    'access_token'  => $tokenData['accessToken'],
+    'refresh_token' => $tokenData['refreshToken'],
+    'expires'       => $tokenData['expires'],
+]);
+
+// === Проверяем срок действия и обновляем токен ===
+if ($accessToken->hasExpired()) {
+    $this->log ? $this->log->write(' Токен устарел, обновляем...') : false;
+    try {
+        $accessToken = $apiClient->getOAuthClient()->getAccessTokenByRefreshToken($accessToken);
+        // Сохраняем новый токен
+        file_put_contents($tokenFile, json_encode([
+            'accessToken'  => $accessToken->getToken(),
+            'refreshToken' => $accessToken->getRefreshToken(),
+            'expires'      => $accessToken->getExpires(),
+            'baseDomain'   => $tokenData['baseDomain'],
+        ], JSON_PRETTY_PRINT));
+        $this->log ? $this->log->write(' Токен обновлён') : false;
+    } catch (\Exception $e) {
+        $this->log ? $this->log->write(' Ошибка обновления токена: '.$e->getMessage()) : false;
+        exit('Ошибка обновления токена AmoCRM: '.$e->getMessage());
+    }
+}
+
+// === Устанавливаем токен в API клиент ===
+$apiClient->setAccessToken($accessToken)
+          ->setAccountBaseDomain($tokenData['baseDomain']);
+
+
+
+
+но get_token.php аменить на 
+
+<?php
+include_once __DIR__ . '/bootstrap.php';
+
+session_start();
+
+function logMsg($msg) {
+    file_put_contents(__DIR__ . '/token.log', date('c') . " | " . $msg . PHP_EOL, FILE_APPEND);
+}
+
+function saveToken($data) {
+    file_put_contents(__DIR__ . '/token_info.json', json_encode($data, JSON_PRETTY_PRINT));
+}
+
+// === Если завершили авторизацию, показываем сообщение и выходим ===
+if (isset($_GET['done'])) {
+    echo " Интеграция успешно установлена!";
+    exit;
+}
+
+logMsg("Loaded ENV: CLIENT_ID=" . $_ENV['CLIENT_ID']);
+
+if (isset($_GET['referer'])) {
+    $apiClient->setAccountBaseDomain($_GET['referer']);
+}
+
+// === Генерация ссылки на авторизацию ===
+if (!isset($_GET['code'])) {
+    $state = bin2hex(random_bytes(16));
+    $_SESSION['oauth2state'] = $state;
+
+    $authorizationUrl = $apiClient->getOAuthClient()->getAuthorizeUrl([
+        'state' => $state,
+        'mode' => 'post_message',
+    ]);
+
+    logMsg("Redirect to AmoCRM OAuth: " . $authorizationUrl);
+    header('Location: ' . $authorizationUrl);
+    exit;
+}
+
+// === Проверка state ===
+if (empty($_GET['state']) || empty($_SESSION['oauth2state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+    unset($_SESSION['oauth2state']);
+    logMsg("ERROR: Invalid state");
+    exit(' Ошибка: Invalid state');
+}
+
+// === Если код уже был использован (повторный запрос) ===
+if (isset($_SESSION['used_code']) && $_SESSION['used_code'] === $_GET['code']) {
+    logMsg("ERROR: Code already used");
+    exit(' Ошибка: Этот код авторизации уже был использован. Попробуйте авторизоваться заново.');
+}
+
+// === Пытаемся обменять code ===
+try {
+    logMsg("Exchanging code for token...");
+    $accessToken = $apiClient->getOAuthClient()->getAccessTokenByCode($_GET['code']);
+
+    if (!$accessToken->hasExpired()) {
+        saveToken([
+            'accessToken'  => $accessToken->getToken(),
+            'refreshToken' => $accessToken->getRefreshToken(),
+            'expires'      => $accessToken->getExpires(),
+            'baseDomain'   => $apiClient->getAccountBaseDomain(),
+        ]);
+        logMsg("Access token received, saving...");
+    }
+
+    //  Помечаем code как использованный
+    $_SESSION['used_code'] = $_GET['code'];
+
+    //  Удаляем state
+    unset($_SESSION['oauth2state']);
+
+    //  Делаем редирект на "чистый" URL
+    header("HTTP/1.1 302 Found");
+    header("Location: /modules/custom/pension_amocrm/amo/get_token.php?done=1");
+    exit;
+
+} catch (Exception $e) {
+    logMsg("ERROR: " . $e->getMessage());
+    exit(' Ошибка: ' . $e->getMessage());
+}

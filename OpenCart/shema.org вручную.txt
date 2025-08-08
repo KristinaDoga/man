@@ -1,0 +1,45 @@
+/home/admeen/web/barrel-rezervuar.ru/public_html/catalog/view/theme/univer/template/product/product.tpl перед </head> или перед </body>:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "<?php echo $heading_title; ?>",
+  "image": [
+    "<?php echo $thumb; ?>"
+  ],
+  "description": "<?php echo htmlspecialchars(strip_tags($description)); ?>",
+  "sku": "<?php echo $model; ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?php echo $manufacturer; ?>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "<?php echo $this->url->link('product/product', 'product_id=' . $product_id); ?>",
+    "priceCurrency": "RUB",
+    "price": "<?php echo $price_value; ?>",
+    "availability": "https://schema.org/<?php echo ($quantity > 0) ? 'InStock' : 'OutOfStock'; ?>"
+  }
+}
+</script>
+
+
+Разметка организации
+В footer.tpl добавьте:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "<?= $name ?>",
+  "url": "<?= $base ?>",
+  "logo": "<?= $logo ?>",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-XXX-XXX-XX-XX",
+    "contactType": "customer service",
+    "areaServed": "RU"
+  }
+}
+</script>
