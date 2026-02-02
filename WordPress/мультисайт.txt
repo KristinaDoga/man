@@ -1,0 +1,3 @@
+https://wp-kama.ru/handbook/wordpress/multisite#site-blogs-structure
+https://wp-kama.ru/handbook/wordpress/multisite/install-multisite
+https://wp-kama.ru/handbook/wordpress/multisite/multi-network

@@ -1,0 +1,58 @@
+1. SCF - добвить новое. Добавляем необходимые поля и название (Блок поделиться историей близкого). Условия отображения: блок
+2. Запоминаем ключи полей
+field_tell_story_title
+field_tell_story_desc
+field_tell_story_btn
+field_tell_story_link
+field_tell_story_disclaime
+3.В /wp-content/themes/dptheme/template-parts/blocks добавляем файл:
+tell-story.php
+
+в нём получаем поля с помощью синтаксиса
+// ID записи "Блок", где лежит блок "расскажите историю близкого"
+$block_id = 120;
+
+if (! class_exists('SCF')) {
+  return;
+}
+
+// поля блока
+$title = SCF::get('field_tell_story_title', $block_id);
+$desc = SCF::get('field_tell_story_desc', $block_id);
+
+и пишем вёрстку
+4. В /home/n/nonnarudp/impulssveta.ru/public_html/wp-content/themes/dptheme/inc/shortcodes.php прописываем алиас 
+add_shortcode('tell-story',     fn()=> dptheme_shortcode_block(['name'=>'tell-story']));
+
+5. Заполняем данные в админке "Настройки блоков"
+6. Добавить шорткод в https://impulssveta.ru/wp-admin/admin.php?page=dptheme-shortcodes
+6. Готово, можно использовать в админке с помошью
+[tell-story]
+
+
+
+
+
+
+field_contact_info_number_format
+field_contact_info_number_simple
+field_contact_info_email
+field_contact_info_address
+field_contact_info_telegram
+field_contact_info_whatsapp
+field_contact_info_vk
+field_contact_map_iframe
+field_contact_logo
+field_contact_requisites
+field_contact_disclaimer
+
+field_blocks_page_stories
+field_blocks_page_articles
+field_blocks_page_service
+
+ 
+
+field_albom_name
+field_albom_content
+field_albom_photo
+field_albom_video

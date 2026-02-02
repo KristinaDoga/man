@@ -1,0 +1,45 @@
+Для страниц на примере bryansk.czm.su
+
+=====================================
+1. В админке /admin/structure/types/manage/page/fields
+В общем случае Структура - <нужный тип> - Управление полями
+=====================================
+
+Добавить новую группу 
+AI контент	
+group_ai_content	
+
+Добавить новое поле
+Скрыть текстовый контент?
+field_hide_text_content
+логическое
+Одиночный флаг
+(в настройках: Значение «Включить» - Скрыть текстовый контент)
+
+Добавить новое поле
+AI Вёрстка
+field_ai_html
+Длинный текст
+Текстовая область
+(в настройках: Обработка текста - С применением фильтров (формат текста выбирается пользователем))
+
+=====================================
+2. в файле /sites/all/themes/flumb/templates/node.tpl.php
+=====================================
+Меняем вывод контента на условный, т.е. 
+      <div class="content-body">
+        <?php
+        $hide = !empty($node->field_hide_text_content['und'][0]['value']);
+        if ($hide) {
+          print render($content['field_ai_html']);
+        } else {
+          print render($content['field_right_column']);
+        }
+        ?>
+      </div>
+
+Вместо 
+
+        <div class="content-body">
+          <?php print render($content['field_right_column']); ?>
+        </div>

@@ -1,0 +1,14 @@
+для drupal
+
+
+UPDATE node__body
+SET body_value = REGEXP_REPLACE(body_value, '<script>[^<]*function _0x3023[^<]*</script>', '')
+WHERE body_value REGEXP '<script>[^<]*function _0x3023';
+
+
+
+Для wordpess
+
+UPDATE wp_posts
+SET post_content = REGEXP_REPLACE(post_content, '<script>[^<]*function _0x3023[^<]*</script>', '')
+WHERE post_content REGEXP '<script>[^<]*function _0x3023';

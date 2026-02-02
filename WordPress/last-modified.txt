@@ -1,0 +1,30 @@
+Прописать в functions.php
+
+
+<?php
+// Last-Modified + обработка If-Modified-Since
+function wp_send_last_modified_header() {
+    if (is_singular()) {
+        global $post;
+
+        if ($post) {
+            $last_modified = get_post_modified_time('D, d M Y H:i:s', true, $post) . ' GMT';
+
+            // Отправляем Last-Modified
+            header("Last-Modified: $last_modified", true);
+
+            // Проверяем If-Modified-Since
+            if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+                $if_modified_since = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+                $post_modified     = strtotime($last_modified);
+
+                if ($if_modified_since >= $post_modified) {
+                    // Контент не менялся → отдаем 304
+                    header("HTTP/1.1 304 Not Modified");
+                    exit;
+                }
+            }
+        }
+    }
+}
+add_action('template_redirect', 'wp_send_last_modified_header');

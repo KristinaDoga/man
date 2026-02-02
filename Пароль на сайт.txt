@@ -1,0 +1,19 @@
+В .htaccess
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile <абсолютный путь>/public_html/.htpasswd
+Require valid-user
+
+В .htpasswd
+
+mad_men:$apr1$tlg94wa5$CykoJ7WrnWaJ/bBsjCPSL/
+
+
+
+
+
+В этом случае
+Логин: mad_men
+Пароль mad_men (записан его хэш)
+генерировать его можно тут https://hostingcanada.org/htpasswd-generator/#password

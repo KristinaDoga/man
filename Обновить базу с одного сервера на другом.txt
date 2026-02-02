@@ -1,0 +1,4 @@
+mysqldump -u DBUSER -p'DBPASS' DBNAME | ssh root@NEW_SERVER_IP "mysql -u NEWDBUSER -p'NEWDBPASS' DBNAME"
+mysqldump -u admeen_panssochi -p'xzE=P@3DaH/hdNh)' admeen_panssochi | ssh root@belsogquipklipiel.beget.app "mysql -u user_panssochi -p'xzE=P@3DaH/hdNh)' user_panssochi"
+mysqldump -u !!! -p' !!! ' !!! | ssh root@belsogquipklipiel.beget.app "mysql -u !!! -p'!!!' !!!"
+mysqldump -u admeen_rodusspb -p'1U8x1A5o' admeen_rodusspb | ssh root@belsogquipklipiel.beget.app "mysql -u user_rodusspb -p'1U8x1A5o' user_rodusspb"
